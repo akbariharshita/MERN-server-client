@@ -1,4 +1,6 @@
+/* eslint-disable react/prop-types */
 import { createContext, useContext, useEffect, useState } from "react";
+import { BASE_URL } from "../utils";
 
 export const AuthContext = createContext();
 
@@ -22,7 +24,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchWithBaseURL = (url, options) => {
     // Define your default base URL here
-    const baseURL = "http://localhost:1000/api";
+    const baseURL = BASE_URL;
 
     // Combine the base URL with the provided URL
     const fullURL = baseURL + url;

@@ -52,7 +52,7 @@ const Servicesadd = () => {
           img: null,
         });
         toast.success("Services Add Successfull");
-        navigate("/service");
+        navigate("/admin/service");
       } else {
         toast.error("Service not added");
       }

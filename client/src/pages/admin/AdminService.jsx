@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import DataTable, { createTheme } from "react-data-table-component";
 import { Link } from "react-router-dom";
-import { useAuth } from "../store/auth";
+import { IMAGES_URL } from "../../utils";
+import { useAuth } from "../../store/auth";
 
 createTheme("solarized", {
   text: {
@@ -25,7 +26,7 @@ createTheme("solarized", {
   },
 });
 
-const Service = () => {
+const AdminService = () => {
   const [service, setService] = useState([]);
 
   const { fetchWithBaseURL } = useAuth();
@@ -60,7 +61,7 @@ const Service = () => {
       selector: (row) => (
         <img
           className="my-4 w-32 h-32"
-          src={`http://localhost:5000/images/` + row.img}
+          src={IMAGES_URL + row.img}
           alt="MDN logo"
         />
       ),
@@ -120,4 +121,4 @@ const Service = () => {
   );
 };
 
-export default Service;
+export default AdminService;

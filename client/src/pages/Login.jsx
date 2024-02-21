@@ -18,8 +18,6 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log({ user });
-
     try {
       const response = await fetchWithBaseURL(`/auth/login`, {
         method: "POST",
@@ -36,7 +34,7 @@ const Login = () => {
         // localStorage.setItem("token", data.token);
         setUser({ email: "", password: "" });
         toast.success("Login Successfull");
-        navigate("/");
+        navigate("/admin/users");
       } else {
         toast.error(data.extraDetails ? data.extraDetails : data.message);
       }

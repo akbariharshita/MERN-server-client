@@ -1,13 +1,18 @@
+import { useEffect } from "react";
+
 import { NavLink, useNavigate, Outlet } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { RiMessage2Fill } from "react-icons/ri";
 import { MdMiscellaneousServices } from "react-icons/md";
-import { IoHome } from "react-icons/io5";
 import { useAuth } from "../../store/auth";
 
 const AdminLayout = () => {
   const navigate = useNavigate();
-  const { user, isLoading } = useAuth();
+  const { user, isLoading, userAuthentication } = useAuth();
+
+  useEffect(() => {
+    userAuthentication();
+  }, []);
 
   if (isLoading) {
     return <h1>Loading ...</h1>;
@@ -43,7 +48,7 @@ const AdminLayout = () => {
             </li>
             <li>
               <NavLink
-                to="/service"
+                to="/admin/service"
                 className="flex py-2 md:px-12 text-center text-black font-bold text-2xl hover:text-gray-500"
               >
                 <MdMiscellaneousServices className="text-3xl me-4" />
@@ -59,14 +64,15 @@ const AdminLayout = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink
-                to="/"
+              <div
                 className="flex py-2 md:px-12 text-center text-black font-bold text-2xl hover:text-gray-500"
+                onClick={() => {
+                  localStorage.removeItem("token");
+                  navigate("/");
+                }}
               >
-                {" "}
-                <IoHome className="text-3xl me-4" />
-                Home
-              </NavLink>
+                Logout
+              </div>
             </li>
           </ul>
         </nav>
